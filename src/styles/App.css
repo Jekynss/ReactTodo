@@ -10,7 +10,7 @@ body {
   width: 100%;
 }
 
-.main__container {
+.container{
   display: flex;
   justify-content: space-around;
   flex-direction: column;
@@ -45,7 +45,7 @@ body {
   text-decoration: line-through;
 }
 
-.main__h1 {
+.header {
   position: inline;
   top: -155px;
   width: 100%;

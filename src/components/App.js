@@ -3,81 +3,69 @@ import React from "react";
 import "../styles/App.css";
 
 import AddTodoForm from "./AddTodoForm";
-import TodoListsForm from "./TodoListsForm";
+import TodoLists from "./TodoLists";
 import SearchComponent from "./SearchComponent";
 import Filters from "./Filters";
 
-class App extends React.Component {
-  state = {
-    todos: [
-      { content: "Hello", id: "checkbox-1" },
-      { content: "Word", id: "checkbox-2" },
-      { content: "World", id: "checkbox-3" },
-    ],
-    activeFilter: "All",
-    completed: [],
-    search_string: "",
-  };
+export default function App() {
+  const[searchString,setSearchString] = React.useState('');
+  const[completed, setCompleted] = React.useState([]);
+  const[activeFilter,setActiveFilter] = React.useState('All');
+  const[todos, setTodos] = React.useState([
+  { content: "Hello", id: "checkbox-1" },
+  { content: "Word", id: "checkbox-2" },
+  { content: "World", id: "checkbox-3" },])
 
-  setComplitedBoxes = (id) => {
-    const completed = this.state.completed.filter((elem) => {
+   const setComplitedBoxes = (id) => {
+    const completedWithOutId = completed.filter((elem) => {
       return elem !== id;
     });
-    console.log(this.state.completed);
-    console.log(id);
-    this.state.completed.includes(id)
-      ? this.setState({ completed: completed })
-      : this.setState({ completed: [...this.state.completed, id] });
+
+      completed.includes(id) ? setCompleted(completedWithOutId) :
+      setCompleted([...completed, id]);
   };
 
-  setActiveFilter = (value) => {
-    this.setState({ activeFilter: value });
-  };
+    const deleteTodoItem = (id) => {
+      setTodos(
+        todos.filter((elem) => {
+          return elem.id !== id;
+        })
+      );
 
-  deleteTodoItem = (id) => {
-    const todos = this.state.todos.filter((elem) => {
-      return elem.id !== id;
-    });
+      setCompleted(completed.filter((elem) => {   //delete id from complited
+        return elem !== id;
+      }));
 
-    this.setState({ todos: todos });
-  };
+    };
 
-  addTodo = (todo) => {
+  const addTodo = (todo) => {
     todo.id = Math.random().toString();
-    const todos = [...this.state.todos, todo];
-    this.setState({ todos: todos });
+    setTodos([...todos, todo]);
   };
 
-  setSearchString = (search_str) => {
-    this.setState({ search_string: search_str });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <div class="main">
-          <h1 class="main__h1">todos</h1>
-          <div class="main__container">
-            <SearchComponent setSearchString={this.setSearchString} />
-            <TodoListsForm
-              todos={this.state.todos}
-              deleteTodoItem={this.deleteTodoItem}
-              setComplitedBoxes={this.setComplitedBoxes}
-              completed={this.state.completed}
-              activeFilter={this.state.activeFilter}
-              search_string={this.state.search_string}
-            />
-            <AddTodoForm addTodo={this.addTodo} />
-            <Filters
-              filters={["All", "Active", "Completed"]}
-              activeFilter={this.state.activeFilter}
-              setActiveFilter={this.setActiveFilter}
-            />
-          </div>
+  return (
+    <div className="App">
+      <div className="main">
+        <h1 className="header">todos</h1>
+        <div className="container">
+          <SearchComponent setSearchString={setSearchString} />
+          <TodoLists
+            todos={todos}
+            deleteTodoItem={deleteTodoItem}
+            setComplitedBoxes={setComplitedBoxes}
+            completed={completed}
+            activeFilter={activeFilter}
+            search_string={searchString}
+          />
+          <AddTodoForm addTodo={addTodo} />
+          <Filters
+            filters={["All", "Active", "Completed"]}
+            activeFilter={activeFilter}
+            setActiveFilter={setActiveFilter}
+          />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
 
-export default App;
+}

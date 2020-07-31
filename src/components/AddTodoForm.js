@@ -2,38 +2,33 @@ import React from "react";
 
 import '../styles/components/AddTodo.css'
 
-class AddTodoForm extends React.Component {
-    state={
-        content:"",
-        id:""
+export default function AddTodoForm({addTodo}) {
+
+  const [todoItem, setTodosItems] = React.useState({content:'',id:''});
+
+  const handleSubmit=(e)=>{
+      e.preventDefault();
+      addTodo(todoItem);
+      setTodosItems({content:''});
     }
-      handleSubmit=(e)=>{
-        e.preventDefault();
-        this.props.addTodo(this.state);
-        this.setState({content:''});
-      }
 
-      handleChange=(e)=>{
-          this.setState({content:`${e.target.value}`})
-      }
+  const handleChange=(e)=>{
+        setTodosItems({content:`${e.target.value}`})
+    }
 
-  render() {
     return (
-      <form id="addTodoForm" className="main__container__input-add" onSubmit={this.handleSubmit}>
+      <form id="addTodoForm" className="main__container__input-add" onSubmit={handleSubmit}>
         <input
           type="text"
           name="add_string_input"
           className="main__container__input-add__input"
           placeholder="What needs to be done?"
-          onChange={this.handleChange}
-          value={this.state.content}
+          onChange={handleChange}
+          value={todoItem.content}
         />
-        <button onClick={null} className="main__container__input-add__button">
+        <button className="main__container__input-add__button">
           Add
         </button>
       </form>
     );
-  }
 }
-
-export default AddTodoForm;

@@ -25,6 +25,7 @@ function TodoLists({
       (activeFilter === "Completed" && completed.includes(elem_id))
     );
   };
+
   const filteredTodos = todos.filter((todo) => {return matchesTheSearch(todo.content) && matchesTheFilter(todo.id)});
   return (
     <div id="options">
@@ -45,7 +46,7 @@ function TodoLists({
   );
 }
 const mapStateToProps=(state, ownProps)=>{
-  return {todos:state.todos.todos}
+  return {todos:state.todos.todos,activeFilter:state.todos.activeFilter}
 }
 
 export default connect(mapStateToProps)(TodoLists)

@@ -1,11 +1,12 @@
 import React from "react";
 import TodoListItem from "./TodoListItem";
+import {connect} from 'react-redux';
 
 import "../styles/components/TodoLists.css";
 
-export default function TodoLists({
+
+function TodoLists({
   todos,
-  deleteTodoItem,
   setComplitedBoxes,
   completed,
   search_string,
@@ -24,26 +25,27 @@ export default function TodoLists({
       (activeFilter === "Completed" && completed.includes(elem_id))
     );
   };
-
+  const filteredTodos = todos.filter((todo) => {return matchesTheSearch(todo.content) && matchesTheFilter(todo.id)});
   return (
     <div id="options">
       <ul className="main__container__item__todo-list">
-        {todos.map((elem) => {
-          return matchesTheSearch(elem.content) &&
-            matchesTheFilter(elem.id) ? (
+        {filteredTodos.map((elem) => {
+          return (
             <TodoListItem
               key={elem.id}
               content={elem.content}
               id={elem.id}
-              deleteTodoItem={deleteTodoItem}
               setComplitedBoxes={setComplitedBoxes}
               completed={completed}
             />
-          ) : (
-            ""
-          );
+          )
         })}
       </ul>
     </div>
   );
 }
+const mapStateToProps=(state, ownProps)=>{
+  return {todos:state.todos.todos}
+}
+
+export default connect(mapStateToProps)(TodoLists)

@@ -1,14 +1,16 @@
 import React from "react";
 
 import '../styles/components/AddTodo.css'
+import { connect } from "react-redux";
+import { addTodo } from "../redux/actions";
 
-export default function AddTodoForm({addTodo}) {
+function AddTodoForm(props) {
 
   const [todoItem, setTodosItems] = React.useState({content:'',id:''});
 
   const handleSubmit=(e)=>{
       e.preventDefault();
-      addTodo(todoItem);
+      props.addTodoDispatch(todoItem);
       setTodosItems({content:''});
     }
 
@@ -32,3 +34,12 @@ export default function AddTodoForm({addTodo}) {
       </form>
     );
 }
+
+const mapDispatchToProps = (dispatch)=>{
+  return{
+  addTodoDispatch: (todo) => {dispatch(addTodo(todo))}
+  }
+}
+
+
+export default connect(undefined,mapDispatchToProps)(AddTodoForm)

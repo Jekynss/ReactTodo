@@ -1,12 +1,14 @@
 import React from "react";
 import classNames from "classnames";
+import {connect} from 'react-redux';
+import {deleteTodo} from '../redux/actions'
 
-export default function TodoListItem({
+function TodoListItem({
   content,
   id,
-  deleteTodoItem,
   setComplitedBoxes,
   completed,
+  deleteTodoDispatch
 }) {
   const isCompleted = completed.includes(id);
 
@@ -31,9 +33,19 @@ export default function TodoListItem({
       ></label>
       {content}
       <button
-        onClick={() => deleteTodoItem(id)}
+        onClick={() => deleteTodoDispatch(id)}
         className="todo-list__li__destroy"
       ></button>
     </li>
   );
 }
+
+const mapDispatchToProps = (dispatch)=>{
+  return{
+  deleteTodoDispatch: (todo_id) => {dispatch(deleteTodo(todo_id))}
+  }
+}
+
+
+export default connect(undefined,mapDispatchToProps)(TodoListItem)
+

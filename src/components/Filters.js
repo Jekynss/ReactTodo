@@ -1,9 +1,11 @@
 import React from "react";
 import classNames from "classnames";
+import { connect } from "react-redux";
+import {changeFilter} from "../redux/actions"
 
 import '../styles/components/Filters.css'
 
-export default function Filters({filters,setActiveFilter,activeFilter}) {
+function Filters({filters,activeFilter,changeFilter}) {
   
   return (
     <div className="filters-block">
@@ -15,7 +17,7 @@ export default function Filters({filters,setActiveFilter,activeFilter}) {
             })}
             key={`${filter_value}_${index}`}
             value={filter_value}
-            onClick={()=>setActiveFilter(filter_value)}
+            onClick={()=>changeFilter(filter_value)}
           >
             {filter_value}
           </button>
@@ -25,3 +27,14 @@ export default function Filters({filters,setActiveFilter,activeFilter}) {
   );
 }
 
+const mapDispatchToProps = (dispatch)=>{
+  return{
+  changeFilter: (filter) => {dispatch(changeFilter(filter))}
+  }
+}
+
+const mapStateToProps=(state, ownProps)=>{
+  return{filters:state.todos.filters,activeFilter:state.todos.activeFilter}
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Filters)

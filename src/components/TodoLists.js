@@ -46,7 +46,7 @@ function TodoLists({
   );
 }
 const mapStateToProps=(state, ownProps)=>{
-  return {todos:state.todos.todos,activeFilter:state.todos.activeFilter}
+  return {todos:state.todoReducer.todos,activeFilter:state.todoReducer.activeFilter}
 }
 
 export default connect(mapStateToProps)(TodoLists)

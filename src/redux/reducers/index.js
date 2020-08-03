@@ -11,7 +11,7 @@ const initialState = {
   filters:['All','Active','Completed']
 };
 
-function todos(state = initialState, action) {
+function todoReducer(state = initialState, action) {
   switch (action.type) {
     case actions.ADD_TODO:{
       action.todo.id=Math.random();
@@ -30,4 +30,4 @@ function todos(state = initialState, action) {
       return state;
   }
 }
-export default combineReducers({ todos });
+export default combineReducers({ todoReducer });

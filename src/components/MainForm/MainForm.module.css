@@ -1,0 +1,39 @@
+.input_text {
+  width: 42%;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.input_radio {
+    margin:0;
+    width: 50px;
+}
+
+.main_form {
+  width: 100%;
+}
+.text_inputs {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+.container{
+  border:2px solid black;
+  padding: 10px 50px;
+}
+
+.radio_buttons{
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.gender_radio_button{
+    text-align: center;
+}
+
+.bottom_line{
+    display: flex;
+    justify-content: space-between;
+}

@@ -34,7 +34,7 @@ const mapDispatchToProps = (dispatch)=>{
 }
 
 const mapStateToProps=(state, ownProps)=>{
-  return{filters:state.todos.filters,activeFilter:state.todos.activeFilter}
+  return {filters:state.todos.filters,activeFilter:state.todos.activeFilter}
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Filters)

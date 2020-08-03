@@ -3,9 +3,15 @@ import ReactDOM from 'react-dom';
 import './styles/index.css';
 import App from './components/App';
 import createStore from './redux/store'
+import {TestStore} from './containers/test.js'
 import {Provider} from 'react-redux'
 
 const store = createStore();
+const testStore = TestStore();
+
+testStore.dispatch({type:'ADD_TEST',content:'test1'});
+testStore.dispatch({type:'ADD_TEST',content:'test2'});
+testStore.dispatch({type:'ADD_TEST',content:'test3'});
 
 ReactDOM.render(
   <React.StrictMode>

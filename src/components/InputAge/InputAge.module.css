@@ -1,0 +1,3 @@
+.input_text{
+    composes: input_text from '../MainForm/MainForm.module.css';
+}

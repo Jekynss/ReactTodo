@@ -1,0 +1,10 @@
+.input_radio {
+    composes: input_radio from '../MainForm/MainForm.module.css'
+}
+
+.radio_buttons{
+    composes: radio_buttons from '../MainForm/MainForm.module.css'
+}
+.gender_radio_button{
+    composes: gender_radio_button from '../MainForm/MainForm.module.css'
+}

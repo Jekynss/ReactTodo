@@ -1,60 +1,37 @@
 import React from "react";
-import {CardContext} from '../../Contexts/CardContext'
+import { CardsContext } from "../../Contexts/CardsContext";
+import InputAge from "../InputAge/InputAge";
+import InputName from "../InputName/InputName";
+import { CardContext } from "../../Contexts/CardContext";
 
 import styles from "./MainForm.module.css";
+import InputGenderRadio from "../InputGenderRadio/InputGenderRadio";
 
 export default function MainForm() {
-  const [card,setCard] = React.useState({name:'',age:'',gender:'Male'})
-  const {cards,setCards} = React.useContext(CardContext)
+  const { card, setCard } = React.useContext(CardContext);
+  const { setNewCard } = React.useContext(CardsContext);
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const target = e.target;
-    setCards([...cards,{name:target.name.value,age:target.age.value,gender:target.gender.value}])
-    setCard({name:'',age:'',gender:'Male'})
-  }
-
-  const handleChangeName=(e)=>{
-    const propValue=e.target.value;
-    setCard({...card, name:`${propValue}`})
-  }
-
-  const handleChangeAge=(e)=>{
-    setCard({...card, age:`${e.target.value}`})
-  }
+    //if (card.name && card.age) {
+      setNewCard(card);
+      setCard({ name: "", age: "", gender: card.gender });
+    //}
+  };
 
   return (
     <div className={styles.container}>
       <form className={styles.main_form} onSubmit={handleSubmit}>
         <div className={styles.text_inputs}>
-          <input className={styles.input_text} type="text" name="name" placeholder="Enter your dog's name" onChange={handleChangeName} value={card.name}/>
-          <input className={styles.input_text} type="number" name="age"  placeholder="Enter your dog's age" onChange={handleChangeAge} value={card.age}/>
+          <InputName />
+          <InputAge />
         </div>
         <div className={styles.bottom_line}>
-        <div className={styles.radio_buttons}>
-          <div className={styles.gender_radio_button}>
-            <input
-              className={styles.input_radio}
-              id="male"
-              type="radio"
-              name="gender"
-              value="Male"
-              defaultChecked
-            />
-            <label htmlFor="male">Mail</label>
+          <div className={styles.radio_buttons}>
+            <InputGenderRadio name="Male" defaultVal={true} />
+            <InputGenderRadio name="Female" />
           </div>
-          <div className={styles.gender_radio_button}>
-            <input
-              className={styles.input_radio}
-              type="radio"
-              name="gender"
-              value="Female"
-              id="female"
-            />
-            <label htmlFor="female">Femail</label>
-          </div>
-          </div>
-          <input type="submit"/>
+          <input type="submit" />
         </div>
       </form>
     </div>

@@ -13,10 +13,10 @@ export default function MainForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //if (card.name && card.age) {
+    if (card.name && card.age) {
       setNewCard(card);
       setCard({ name: "", age: "", gender: card.gender });
-    //}
+    }
   };
 
   return (

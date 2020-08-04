@@ -28,8 +28,6 @@ export const CardsProvider = (props) => {
     },
   ]);
 
-  React.useEffect(()=>{console.log(cards)},[cards]);
-
   const [update,updateComponent] = React.useState(false);
 
   const setNewCard = (card) => {

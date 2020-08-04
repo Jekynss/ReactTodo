@@ -1,10 +1,10 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {CardContext} from '../../Contexts/CardContext'
 
 import styles from './InputGenderRadio.module.css'
 
 export default function InputGenderRadio({name,defaultVal}) {
-    const {card,setCard} = React.useContext(CardContext);
+    const {card,setCard} = useContext(CardContext);
 
     const handleChangeRadio = (e) => {
         setCard({...card,gender:`${e.target.value}`})

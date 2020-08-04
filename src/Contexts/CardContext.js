@@ -1,9 +1,9 @@
-import React from "react";
+import React,{useState,createContext} from "react";
 
-export const CardContext = React.createContext();
+export const CardContext = createContext();
 
 export const CardProvider = (props) => {
-  const [card, setCard] = React.useState({ name: "", age: "", gender: "Male" });
+  const [card, setCard] = useState({ name: "", age: "", gender: "Male" });
 
   return (
     <CardContext.Provider value={{ card, setCard }}>

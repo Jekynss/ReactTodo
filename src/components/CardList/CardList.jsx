@@ -1,11 +1,11 @@
-import React from "react";
+import React,{useContext} from "react";
 import Card from "../Card/Card";
 import { CardsContext } from "../../Contexts/CardsContext";
 
 import styles from "./CardList.module.css";
 
-export default function CardList() {
-  const { cards } = React.useContext(CardsContext);
+export default function CardList(props) {
+  const { cards } = useContext(CardsContext);
 
   return (
     <div className={styles.card_list}>
@@ -15,7 +15,8 @@ export default function CardList() {
           name={card.name}
           age={card.age}
           gender={card.gender}
-          imageUrl={card.imageUrl}
+          id={card.id}
+          setShowModal={props.setShowModal}
         />
       ))}
     </div>

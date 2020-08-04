@@ -1,10 +1,10 @@
-import React from "react";
+import React,{useContext} from "react";
 import {CardContext} from '../../Contexts/CardContext'
 
 import styles from './InputName.module.css'
 
 export default function InputName() {
-    const {card,setCard} = React.useContext(CardContext);
+    const {card,setCard} = useContext(CardContext);
 
   const handleChangeName = (e) => {
     const propValue = e.target.value;

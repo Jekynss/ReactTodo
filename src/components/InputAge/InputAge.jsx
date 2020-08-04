@@ -1,11 +1,11 @@
-import React from "react";
+import React,{useContext} from "react";
 
 import { CardContext } from "../../Contexts/CardContext";
 
 import styles from "./InputAge.module.css";
 
 export default function InputAge() {
-  const { card, setCard } = React.useContext(CardContext);
+  const { card, setCard } = useContext(CardContext);
 
   const handleChangeAge = (e) => {
     setCard({ ...card, age: `${e.target.value}` });

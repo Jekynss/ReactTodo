@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext} from "react";
 import { CardsContext } from "../../Contexts/CardsContext";
 import InputAge from "../InputAge/InputAge";
 import InputName from "../InputName/InputName";
@@ -8,13 +8,14 @@ import styles from "./MainForm.module.css";
 import InputGenderRadio from "../InputGenderRadio/InputGenderRadio";
 
 export default function MainForm() {
-  const { card, setCard } = React.useContext(CardContext);
-  const { setNewCard } = React.useContext(CardsContext);
+  const { card, setCard } = useContext(CardContext);
+  const { cards, setCards } = useContext(CardsContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (card.name && card.age) {
-      setNewCard(card);
+      card.id=Math.random().toString();
+      setCards([...cards,card]);
       setCard({ name: "", age: "", gender: card.gender });
     }
   };

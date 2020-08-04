@@ -1,11 +1,15 @@
 .card{
     width: 250px;
     height: 250px;
-    margin: 30px 0;
+    margin: 30px 30px;
+    display: inline-block;
+    position: relative;
 }
 
 .info{
-    opacity: 0.5;
+    opacity: 0.9;
+    border: 2px black solid;
+    font-size: 21px;
     width: 60%;
     height: 30px;
     margin: 5px 10px;
@@ -17,4 +21,16 @@
 .background_image{
     width: 250px;
     position: absolute;
+}
+
+.delete_icon{
+    opacity: 0.9;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: black;
+    font-size: 25px;
+    border: 3px solid red;
+    background: red;
+    cursor: pointer;
 }

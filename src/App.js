@@ -1,21 +1,14 @@
 import React from "react";
-import MainForm from "./components/MainForm/MainForm";
-import CardList from "./components/CardList/CardList";
-import styles from "./App.module.css";
-import { CardsProvider } from "./Contexts/CardsContext";
-import { CardProvider } from "./Contexts/CardContext";
+import MainPage from "./components/MainPage/MainPage";
+import ProfilePage from './components/ProfilePage/ProfilePage'
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <CardsProvider>
-      <CardProvider>
-        <div className={styles.main}>
-          <h1 className={styles.header}>Site</h1>
-          <MainForm />
-          <CardList />
-        </div>
-      </CardProvider>
-    </CardsProvider>
+    <Switch>
+      <Route exact path="/" component={MainPage} />
+      <Route path="/dogs/:id" component={ProfilePage} />
+    </Switch>
   );
 }
 
